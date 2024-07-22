@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="../styles/global.css">
+        <link rel="stylesheet" href="../styles/dashboard.css">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <div class="panel">
+            <div class="playerInfo">
+                <label id="username"></label>
+                <label id="balance">Balance: 0</label>
+            </div>
+            
+            <div class="controlPanel">
+
+                <div id="actionPanelContainer" class="actionPanelContainer">    
+                    <div id="payPlayerPanel" class="payPlayerPanel panel actionPanel"> <!--TODO: Fix class names and things of that nature -->
+                        <button id="payPlayerCloseBtn" class="closeBtn" onclick="closeParentPanel(this)">X</button>
+                        <ul id="playerList">
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="buttonContainer">
+                    <button id="payPlayerBtn">Pay to player</button>
+                    <button>Pay to bank</button>
+                    <button>Admin</button>
+                    <button>Logs</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </body>
+    <script src="../scripts/dashboard.js"></script>
+</html>

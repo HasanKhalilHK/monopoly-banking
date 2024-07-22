@@ -1,0 +1,143 @@
+@keyframes smooth-appear {
+    to{
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+.animate{
+    animation: smooth-appear 1s;
+    animation-fill-mode:forwards ;
+}
+.disableInput{
+    pointer-events: all !important;
+}
+
+.panel{
+    height: 90%;
+    width: 45%;
+    min-width: fit-content;
+  
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.playerInfo {
+    margin-top: 20px;
+    text-align: center;
+}
+#username {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffffff;
+}
+#balance {
+    display: block;
+    font-size: 1.2em;
+    color: #a7a7a7;
+    margin-top: 10px;
+}
+.playerInfo::after {
+    content: '';
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.controlPanel{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+.buttonContainer{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    box-sizing: border-box;
+
+    gap: 10px;
+    padding: 10px;
+    
+}
+.buttonContainer button{
+    max-width:  1fr;
+    max-height: 1fr;
+
+    word-wrap: break-word;
+    padding: 0;
+}
+
+.actionPanelContainer{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    pointer-events: none;
+}
+.actionPanel{
+    filter: drop-shadow(0px 0px 10px #313131);
+
+    background-color: black;
+    pointer-events: all;
+    width: 80%;
+    height: 80%;
+
+}
+
+
+.payPlayerPanel{
+    scale: 0;
+    opacity: 0;
+}
+
+.closeBtn{
+    position: absolute;
+    right: 0;
+    margin: 10px;
+
+    width:  50px;
+    height: 50px;
+}
+
+ul{
+    max-width: 100%;
+    list-style-type: none;
+    overflow-y: scroll;
+}
+li{
+    font-size: 1.3em;
+    padding-top: 10px;
+}
+
+@media only screen and (max-width: 1100px) {
+    .panel{
+        width: 90%;
+    }
+    .playerInfo{
+        font-size: 16px;
+    }
+    .buttonContainer{
+        gap: 5px;
+    }
+    .actionPanel{
+        width: 100%;
+        height: 100%;
+        margin: 10px;
+    }
+}
