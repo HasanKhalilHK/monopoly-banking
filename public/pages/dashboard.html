@@ -16,9 +16,13 @@
             
             <div class="controlPanel">
 
-                <div id="actionPanelContainer" class="actionPanelContainer">    
-                    <div id="payPlayerPanel" class="payPlayerPanel panel actionPanel"> <!--TODO: Fix class names and things of that nature -->
-                        <button id="payPlayerCloseBtn" class="closeBtn" onclick="closeParentPanel(this)">X</button>
+                <div id="actionPanelContainer" class="actionPanelContainer">
+
+                    <div id="payPlayerPanel" class="payPlayerPanel panel actionPanel">
+                        <div class="header">
+                            <button class="closeBtn" onclick="closeParentPanel(this)">X</button>
+                        </div>
+                        
                         <ul id="playerList">
                         </ul>
                     </div>

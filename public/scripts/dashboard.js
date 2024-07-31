@@ -18,10 +18,7 @@ const getPlayerBalance = async (username) => {
     try{
         const response = await fetch("/api/players")
         const result = await response.json()
-        console.log("getPlayerBalance ~ result:", result)
         player = result[username]
-        console.log("getPlayerBalance ~ player:", player)
-        console.log("getPlayerBalance ~ balance:", player.balance)
         return player.balance
     }
     catch (error) {
@@ -35,9 +32,22 @@ const updatePlayerList = async () => {
 
     playerList.innerHTML = ""
     for (const [player, playerInfo] of Object.entries(result)) {
-        let li = document.createElement("li")
-        li.innerHTML = playerInfo.username
-        playerList.appendChild(li)
+        if (playerInfo.username != username){
+            let li = document.createElement("li")
+            li.innerHTML = `<div>
+                                <label>${playerInfo.username}</label>
+                                <label style="color: #a7a7a7">Balance: ${playerInfo.balance}</label>
+                            </div>
+                            <button class="payBtns" onclick="payPlayer(this)" amount="1">+1</button>
+                            <button class="payBtns" onclick="payPlayer(this)" amount="5">+5</button>
+                            <button class="payBtns" onclick="payPlayer(this)" amount="50">+50</button>
+                            <button class="payBtns" onclick="payPlayer(this)" amount="100">+100</button>
+                            <button class="payBtns" onclick="payPlayer(this)" amount="500">+500</button>`
+    
+            li.id = playerInfo.username
+    
+            playerList.appendChild(li)
+        }
     }
 }
 
@@ -47,10 +57,16 @@ const updateBalance = async () =>{
 }
 
 const closeParentPanel = (button) => {
-    button.parentElement.style.scale = 0
-    button.parentElement.style.opacity = 0
-    payPlayerPanel.classList.remove("animate")
+    button.parentElement.parentElement.style.scale = 0
+    button.parentElement.parentElement.style.opacity = 0
+    button.parentElement.parentElement.classList.remove("animate")
     actionPanelContainer.classList.remove("disableInput")
+}
+
+const payPlayer = (button) =>{
+    const receiver = button.parentElement.id
+    const amount = button.getAttribute("amount")
+    socket.emit("pay player", username, receiver, amount)
 }
 
 payPlayerBtn.addEventListener("click", () => {
@@ -63,4 +79,9 @@ updateBalance()
 
 socket.on("player joined", () => {
     updatePlayerList()
+})
+socket.on("balance changed", async () => {
+    console.log("balance changed")
+    await updatePlayerList()
+    await updateBalance()
 })
