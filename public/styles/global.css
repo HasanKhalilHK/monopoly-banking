@@ -1,11 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
-
 :root{
     --item-background-colour: rgb(20,20,20);
     --item-border-colour: rgb(133, 133, 133);
     --panel-border-colour: rgb(133, 133, 133);
     --text-colour: white;
 }
+
+@font-face { 
+    font-family: "Source Sans 3"; 
+    src: url("../fonts/SourceSans3-Regular.ttf");
+} 
+
 
 *{
     color: var(--text-colour);
